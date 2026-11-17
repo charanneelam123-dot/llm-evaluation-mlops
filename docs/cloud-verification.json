@@ -1,0 +1,19 @@
+{
+  "repo": "llm-evaluation-mlops",
+  "url": "https://llm-evaluation-mlops.onrender.com",
+  "health": "passed",
+  "functional_check": {
+    "evaluation_and_mlflow_persistence": "passed",
+    "mode": "fixture"
+  },
+  "deployment_status": "live",
+  "deployed_code_commit": "5428e1ac6622edcac65da6b04b4643ad4b69a9c1",
+  "deploy_id": "dep-dbuduot6e07s73fb53og",
+  "verified_on": "2026-11-17",
+  "compute_plan": "free",
+  "auto_deploy": false,
+  "limitations": [
+    "Model calls require server-side credentials and operator token.",
+    "Free instance storage is ephemeral; idle starts may take time."
+  ]
+}

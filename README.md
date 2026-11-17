@@ -1,5 +1,7 @@
 # LLM Evaluation & MLOps Platform
 
+**[Open the live app](https://llm-evaluation-mlops.onrender.com)** · [API documentation](https://llm-evaluation-mlops.onrender.com/docs)
+
 Keep the failed answers, not just a green percentage.
 
 The application evaluates two prompt variants against twelve versioned cases.

@@ -54,11 +54,14 @@ def main():
     if 'id="real-evaluation"' not in text:text=text.replace('<section id="case-studies"',section+'<section id="case-studies"')
     text=text.replace('Prepared outputs test the evaluation harness. Live-model quality and latency benchmarks are still pending.','The hosted app uses prepared outputs. A separate local Llama 3.2 run below records 80 real inference calls.')
     text=text.replace('No real-model quality or latency result is claimed.','A separate local Llama 3.2 evaluation now records 80 real inference calls across 40 cases; the scorecard above publishes every output and its limits.')
-    text=text.replace('<link rel="stylesheet" href="case-studies.css">','<link rel="stylesheet" href="case-studies.css"><link rel="stylesheet" href="evaluation.css">')
-    text=text.replace('<a href="#work">Work</a>','<a href="#work">Work</a><a href="#real-evaluation">Evaluation</a>')
+    if 'href="evaluation.css"' not in text:
+        text=text.replace('<link rel="stylesheet" href="case-studies.css">','<link rel="stylesheet" href="case-studies.css"><link rel="stylesheet" href="evaluation.css">')
+    if 'href="#real-evaluation"' not in text:
+        text=text.replace('<a href="#work">Work</a>','<a href="#work">Work</a><a href="#real-evaluation">Evaluation</a>')
     page.write_text(text,encoding='utf-8')
     current=page.read_text(encoding='utf-8')
-    current=current.replace('<div class="eval-examples"><h3>',f'<p class="eval-intro">{esc(interpretation)}</p><div class="eval-examples"><h3>')
+    if esc(interpretation) not in current:
+        current=current.replace('<div class="eval-examples"><h3>',f'<p class="eval-intro">{esc(interpretation)}</p><div class="eval-examples"><h3>')
     page.write_text(current,encoding='utf-8')
     js=args.portfolio/'dist/app.js';code=js.read_text(encoding='utf-8').replace('Prepared outputs test the evaluation harness. Live-model quality and latency benchmarks are still pending.','The hosted app uses prepared outputs. A separate local Llama 3.2 run below records 80 real inference calls.');js.write_text(code,encoding='utf-8')
 

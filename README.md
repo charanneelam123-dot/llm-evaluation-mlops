@@ -1,5 +1,20 @@
 # LLM Evaluation & MLOps Platform
 
+## Real-model experiment: local Llama 3.2
+
+A separate reproducible runner now evaluates the installed Ollama model on 40
+authored challenge cases across eight categories, comparing two frozen prompts.
+It records actual model outputs rather than fixture answers. The experiment
+publishes its exact model digest, prompts, labels, scoring rules, and local timings.
+
+[Read the measured results](docs/real-model-evaluation/results.md) ·
+[Reproduce the run](docs/real-model-evaluation/README.md) ·
+[Inspect every response](docs/real-model-evaluation/outputs.jsonl)
+
+This is a small synthetic output-contract evaluation, not a production benchmark
+or semantic hallucination measurement. The hosted app's default fixture mode and
+operator-protected OpenAI mode remain separate from this local Ollama experiment.
+
 
 [![Checks](https://github.com/charanneelam123-dot/llm-evaluation-mlops/actions/workflows/test.yml/badge.svg)](https://github.com/charanneelam123-dot/llm-evaluation-mlops/actions/workflows/test.yml)
 

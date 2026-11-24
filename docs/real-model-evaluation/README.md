@@ -2,6 +2,16 @@
 
 This experiment runs the installed `llama3.2:latest` model through Ollama. It is separate from the application's authored-output fixtures. It does not require an external API key.
 
+Both prompts answered **35/40** cases correctly. Requiring the correct answer and the exact supporting citation set reduced the baseline to **17/40** and the grounded prompt to **10/40**.
+
+From the repository root, regrade all 80 saved responses with Python alone:
+
+```bash
+python scripts/score_saved_responses.py
+```
+
+For example, on `negation-04` the grounded prompt correctly answered No but cited both `policy-3` and `notice-3`. Only `policy-3` supports the answer. The extra citation fails the exact-set check.
+
 ## Frozen setup
 
 - 40 authored synthetic cases, five in each of eight categories: fact lookup, negation, missing evidence, version conflicts, multi-source arithmetic, currency/units, document prompt injection, and arithmetic.

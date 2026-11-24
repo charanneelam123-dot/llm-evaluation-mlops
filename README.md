@@ -7,6 +7,16 @@ authored challenge cases across eight categories, comparing two frozen prompts.
 It records actual model outputs rather than fixture answers. The experiment
 publishes its exact model digest, prompts, labels, scoring rules, and local timings.
 
+Both prompts answered **35/40** cases correctly. Requiring the correct answer and the exact supporting citation set reduced the baseline to **17/40** and the grounded prompt to **10/40**.
+
+From the repository root, regrade all 80 saved responses with Python alone:
+
+```bash
+python scripts/score_saved_responses.py
+```
+
+For example, on `negation-04` the grounded prompt correctly answered No but cited both `policy-3` and `notice-3`. Only `policy-3` supports the answer. The extra citation fails the exact-set check.
+
 [Read the measured results](docs/real-model-evaluation/results.md) ·
 [Reproduce the run](docs/real-model-evaluation/README.md) ·
 [Inspect every response](docs/real-model-evaluation/outputs.jsonl)

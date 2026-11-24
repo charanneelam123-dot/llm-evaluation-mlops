@@ -10,7 +10,24 @@ From the repository root, regrade all 80 saved responses with Python alone:
 python scripts/score_saved_responses.py
 ```
 
-For example, on `negation-04` the grounded prompt correctly answered No but cited both `policy-3` and `notice-3`. Only `policy-3` supports the answer. The extra citation fails the exact-set check.
+### Worked example: a correct answer with an extra citation
+
+**Question.** Is overnight delivery available for Zone 4? Answer Yes or No.
+
+| Source | Passage supplied to the model |
+| --- | --- |
+| `policy-3` | Overnight delivery is not available for Zone 4. Standard delivery is available. |
+| `notice-3` | The delivery FAQ was updated this month. |
+
+**Saved response** (grounded prompt, `negation-04`):
+
+```json
+{"answer": "No", "citations": ["policy-3", "notice-3"]}
+```
+
+**How the grader scored it.** "No" matches the answer key. Both citation IDs exist in the context, but only `policy-3` establishes which delivery options Zone 4 offers. The FAQ update date gives no delivery information. Adding `notice-3` therefore fails the exact-set check and the joint score. The grader compares against the authored citation labels; it does not infer support from the passages itself.
+
+[Inspect the case labels](cases.json) and [the original model responses](outputs.jsonl).
 
 ## Frozen setup
 
